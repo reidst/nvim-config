@@ -46,12 +46,13 @@ opt.tabstop = 4
 
 -- Leader+t opens a terminal in new tab
 map("n", "<leader>t", ":term<CR>i")
+-- Escape exits terminal mode
+map("t", "<ESC>", "<C-\\><C-n>")
 -- Leader+s opens nvim config
 map("n", "<leader>s", ":e ~/.config/nvim/init.lua<CR>")
 -- "jk" enters normal mode
 map("i", "jk", "<esc>")
 map("v", "jk", "<esc>")
-map("t", "jk", "<C-\\><C-n>")
 -- Ctrl+a selects all
 map("n", "<C-a>", "ggVG$v")
 -- Ctrl+movement key navigates windows
