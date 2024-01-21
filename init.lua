@@ -5,15 +5,16 @@ local opt = vim.opt
 local map = function(a, b, c) vim.api.nvim_set_keymap(a, b, c, {}) end
 local noremap = vim.keymap.set
 local Plug = vim.fn["plug#"]
-local colorscheme = "visual_studio_code"
+local colorscheme = "kanagawa-dragon"
+local filetree_cmd = "NvimTreeToggle"
 
 --[[ LEADER ]]
 
 g.mapleader = " "
 g.localleader = "\\"
 
--- g.t_co = 256
--- g.background = 'dark'
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 
 --[[ OPTIONS ]]
 
@@ -23,6 +24,7 @@ opt.number = true
 opt.relativenumber = true
 opt.numberwidth = 4
 opt.scrolloff = 4
+opt.laststatus = 3
 
 -- Filetypes
 opt.encoding = "utf8"
@@ -50,6 +52,8 @@ map("n", "<leader>t", ":term<CR>i")
 map("t", "<ESC>", "<C-\\><C-n>")
 -- Leader+s opens nvim config
 map("n", "<leader>s", ":e ~/.config/nvim/init.lua<CR>")
+-- Leader+ft opens file tree
+map("n", "<leader>ft", ":" .. filetree_cmd .. "<CR>")
 -- "jk" enters normal mode
 map("i", "jk", "<esc>")
 map("v", "jk", "<esc>")
@@ -83,18 +87,58 @@ noremap("v", "<C-n>", ":norm^") -- https://stackoverflow.com/a/23063140
 
 --[[ PLUGINS ]]
 
-vim.call("plug#begin")
--- Themes
-Plug "askfiy/visual_studio_code"
-Plug "morhetz/gruvbox"
--- Files/Data
-Plug "preservim/nerdtree"
--- Shortcuts
-Plug "tpope/vim-commentary"
-vim.call("plug#end")
--- Languages
-Plug "hasufell/ghcup.vim"
-Plug "rbgrouleff/bclose.vim"
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim/git",
+        "--branch=stable",
+        lazypath,
+    })
+end
+opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+    -- Themes
+    "nvim-tree/nvim-web-devicons",
+    { "askfiy/visual_studio_code", lazy = true },
+    { "morhetz/gruvbox", lazy = true },
+    { "rebelot/kanagawa.nvim",
+        lazy = true,
+        config = function()
+            require("kanagawa").setup({
+                compile = true,
+                theme = "dragon",
+                background = {
+                    dark = "dragon",
+                    light = "lotus",
+                },
+	    })
+	end,
+    },
+    -- Files
+    { "nvim-tree/nvim-tree.lua",
+        config = function()
+            require("nvim-tree").setup()
+        end,
+    },
+    -- Statusline
+    { "nvim-lualine/lualine.nvim",
+        config = function()
+            require("lualine").setup({
+                globalstatus = true,
+            })
+        end,
+    },
+    -- Shortcuts
+    "tpope/vim-commentary",
+    -- Languages
+    "hasufell/ghcup.vim",
+    "rbgrouleff/bclose.vim",
+})
 
 if not pcall(vim.cmd, "colorscheme " .. colorscheme) then
     vim.notify("colorscheme " .. colorscheme .. " not found!")
