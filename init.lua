@@ -44,14 +44,16 @@ opt.tabstop = 4
 
 --[[ KEYMAPS ]]
 
--- " t" opens a terminal in new tab
-map("n", "<leader>t", ":tabnew<CR>:term<CR>i")
+-- Leader+t opens a terminal in new tab
+map("n", "<leader>t", ":term<CR>i")
+-- Leader+s opens nvim config
 map("n", "<leader>s", ":e ~/.config/nvim/init.lua<CR>")
 -- "jk" enters normal mode
 map("i", "jk", "<esc>")
 map("v", "jk", "<esc>")
--- "Ctrl+a" selects all
-map("n", "<C-a>", "ggVG$")
+map("t", "jk", "<C-\\><C-n>")
+-- Ctrl+a selects all
+map("n", "<C-a>", "ggVG$v")
 -- Ctrl+movement key navigates windows
 noremap("n", "<C-h>", "<C-w>h")
 noremap("n", "<C-j>", "<C-w>j")
@@ -75,7 +77,7 @@ noremap("n", "[a", ":prev<CR>")
 noremap("n", "]a", ":next<CR>")
 noremap("n", "[A", ":first<CR>")
 noremap("n", "]A", ":last<CR>")
--- "Ctrl-/" operates on selected lines
+-- Ctrl-n operates on selected lines
 noremap("v", "<C-n>", ":norm^") -- https://stackoverflow.com/a/23063140
 
 --[[ PLUGINS ]]
