@@ -15,6 +15,11 @@ noremap("i", "jk", "<ESC>")
 noremap("v", "jk", "<ESC>")
 -- Ctrl+a selects all
 noremap("n", "<C-a>", "ggVG$v")
+-- Ctrl+c copies to system clipboard
+noremap("v", "<C-c>", "\"+y")
+-- Ctrl+v pastes from system clipboard
+noremap("i", "<C-v>", "<ESC>\"+pa")
+noremap("t", "<C-v>", "<C-\\><C-n>\"+pa")
 -- Ctrl+movement key navigates windows
 noremap("n", "<C-h>", "<C-w>h")
 noremap("n", "<C-j>", "<C-w>j")
