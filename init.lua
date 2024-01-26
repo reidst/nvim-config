@@ -2,10 +2,8 @@
 
 local g = vim.g
 local opt = vim.opt
-local map = function(a, b, c) vim.api.nvim_set_keymap(a, b, c, {}) end
 local noremap = vim.keymap.set
-local Plug = vim.fn["plug#"]
-local colorscheme = "kanagawa-dragon"
+local colorscheme = "catppuccin-mocha"
 local filetree_cmd = "NvimTreeToggle"
 
 --[[ LEADER ]]
@@ -25,6 +23,7 @@ opt.relativenumber = true
 opt.numberwidth = 4
 opt.scrolloff = 4
 opt.laststatus = 3
+opt.wrap = false
 
 -- Filetypes
 opt.encoding = "utf8"
@@ -37,36 +36,38 @@ opt.termguicolors = true
 -- Search
 opt.ignorecase = true
 opt.smartcase = true
+opt.incsearch = true
 
 -- Whitespace
 opt.expandtab = true
 opt.shiftwidth = 4
 opt.softtabstop = 4
 opt.tabstop = 4
+opt.smartindent = true
 
 --[[ KEYMAPS ]]
 
 -- Leader+t opens a terminal in new tab
-map("n", "<leader>t", ":term<CR>i")
+noremap("n", "<leader>t", ":term<CR>i")
 -- Escape exits terminal mode
-map("t", "<ESC>", "<C-\\><C-n>")
+noremap("t", "<ESC>", "<C-\\><C-n>")
 -- Leader+s opens nvim config
-map("n", "<leader>s", ":e ~/.config/nvim/init.lua<CR>")
+noremap("n", "<leader>s", ":e ~/.config/nvim/init.lua<CR>")
 -- Leader+ft opens file tree
-map("n", "<leader>ft", ":" .. filetree_cmd .. "<CR>")
+noremap("n", "<leader>ft", ":" .. filetree_cmd .. "<CR>")
 -- "jk" enters normal mode
-map("i", "jk", "<esc>")
-map("v", "jk", "<esc>")
+noremap("i", "jk", "<ESC>")
+noremap("v", "jk", "<ESC>")
 -- Ctrl+a selects all
-map("n", "<C-a>", "ggVG$v")
+noremap("n", "<C-a>", "ggVG$v")
 -- Ctrl+movement key navigates windows
 noremap("n", "<C-h>", "<C-w>h")
 noremap("n", "<C-j>", "<C-w>j")
 noremap("n", "<C-k>", "<C-w>k")
 noremap("n", "<C-l>", "<C-w>l")
 -- Alt+vert movement moves line
-noremap("n", "<A-j>", "Vyddp")
-map("n", "<A-k>", "k<A-j>k")
+noremap("n", "<A-j>", ":m+1<CR>")
+noremap("n", "<A-k>", ":m-2<CR>")
 -- "[b" and "]b" navigate buffers
 noremap("n", "[b", ":bp<CR>")
 noremap("n", "]b", ":bn<CR>")
@@ -109,16 +110,10 @@ require("lazy").setup({
     { "rebelot/kanagawa.nvim",
         lazy = true,
         config = function()
-            require("kanagawa").setup({
-                compile = true,
-                theme = "dragon",
-                background = {
-                    dark = "dragon",
-                    light = "lotus",
-                },
-	    })
-	end,
+            require("kanagawa").setup({compile = true})
+	    end,
     },
+    "catppuccin/nvim",
     -- Files
     { "nvim-tree/nvim-tree.lua",
         config = function()
