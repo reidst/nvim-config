@@ -37,6 +37,9 @@ require("lazy").setup({
         config = function()
             require("lualine").setup({
                 globalstatus = true,
+                sections = {
+                    lualine_c = { 'buffers' },
+                },
             })
         end,
     },
