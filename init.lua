@@ -2,9 +2,9 @@
 
 local colorscheme = "catppuccin-mocha"
 
-require("options")
-require("keymaps")
-require("plugins")
+require("user.options")
+require("user.keymaps")
+require("user.plugins")
 
 if not pcall(vim.cmd, "colorscheme " .. colorscheme) then
     vim.notify("colorscheme " .. colorscheme .. " not found!")
