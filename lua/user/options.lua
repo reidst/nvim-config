@@ -29,6 +29,7 @@ opt.termguicolors = true
 -- Search
 opt.ignorecase = true
 opt.smartcase = true
+opt.hlsearch = false
 opt.incsearch = true
 
 -- Whitespace

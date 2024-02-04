@@ -17,9 +17,9 @@ noremap("v", "jk", "<ESC>")
 noremap("n", "<C-a>", "ggVG$v")
 -- Ctrl+c copies to system clipboard
 noremap("v", "<C-c>", "\"+y")
--- Ctrl+v pastes from system clipboard
-noremap("i", "<C-v>", "<ESC>\"+pa")
-noremap("t", "<C-v>", "<C-\\><C-n>\"+pa")
+-- center cursor onscreen for C-u/C-d
+noremap("n", "<C-u>", "<C-u>zz")
+noremap("n", "<C-d>", "<C-d>zz")
 -- Ctrl+movement key navigates windows
 noremap("n", "<C-h>", "<C-w>h")
 noremap("n", "<C-j>", "<C-w>j")

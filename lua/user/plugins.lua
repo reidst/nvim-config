@@ -23,7 +23,7 @@ require("lazy").setup({
         lazy = true,
         config = function()
             require("kanagawa").setup({compile = true})
-	    end,
+        end,
     },
     "catppuccin/nvim",
     -- Files
