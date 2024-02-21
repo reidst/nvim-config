@@ -1,6 +1,23 @@
--- [[ keymaps.lua ]]
+-- [[ custom.keymaps.lua ]]
 
 local noremap = vim.keymap.set
+
+local hide_bg = function ()
+    if vim.opt.cursorline._value then
+        vim.cmd [[
+                hi Normal guibg=none
+                hi NormalNC guibg=none
+                hi WinSeparator guifg=#303446
+                hi lualine_c_normal guibg=none
+                hi lualine_c_inactive guibg=none
+        ]]
+        vim.opt.cursorline = false
+    else
+        local colorscheme = vim.g.colors_name
+        vim.cmd("colorscheme " .. colorscheme)
+        vim.opt.cursorline = true
+    end
+end
 
 -- Leader+t opens a terminal in new tab
 noremap("n", "<leader>t", ":term<CR>i")
@@ -8,8 +25,8 @@ noremap("n", "<leader>t", ":term<CR>i")
 noremap("t", "<ESC>", "<C-\\><C-n>")
 -- Leader+s opens nvim config
 noremap("n", "<leader>s", ":e ~/.config/nvim/init.lua<CR>")
--- Leader+ft opens file tree
-noremap("n", "<leader>ft", ":NvimTreeToggle<CR>")
+-- Leader+bg makes the background transparent
+noremap("n", "<leader>bg", hide_bg)
 -- "jk" enters normal mode
 noremap("i", "jk", "<ESC>")
 noremap("v", "jk", "<ESC>")
@@ -44,4 +61,4 @@ noremap("n", "]a", ":next<CR>")
 noremap("n", "[A", ":first<CR>")
 noremap("n", "]A", ":last<CR>")
 -- Ctrl-n operates on selected lines
-noremap("v", "<C-n>", ":norm^") -- https://stackoverflow.com/a/23063140
+noremap("v", "<C-n>", ":norm ") -- https://stackoverflow.com/a/23063140

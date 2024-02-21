@@ -2,12 +2,16 @@
   "bclose.vim": { "branch": "master", "commit": "99018b4a2dd18aea1cbd3aa23565b01a0f8c5b73" },
   "ghcup.vim": { "branch": "master", "commit": "6d805d1ffc2298c5b28d2f6ef470eef429e869ad" },
   "gruvbox": { "branch": "master", "commit": "f1ecde848f0cdba877acb0c740320568252cc482" },
-  "kanagawa.nvim": { "branch": "master", "commit": "c19b9023842697ec92caf72cd3599f7dd7be4456" },
-  "lazy.nvim": { "branch": "main", "commit": "28126922c9b54e35a192ac415788f202c3944c9f" },
-  "lualine.nvim": { "branch": "master", "commit": "566b7036f717f3d676362742630518a47f132fff" },
-  "nvim": { "branch": "main", "commit": "bc1f2151f23227ba02ac203c2c59ad693352a741" },
-  "nvim-tree.lua": { "branch": "master", "commit": "7bdb220d0fe604a77361e92cdbc7af1b8a412126" },
-  "nvim-web-devicons": { "branch": "master", "commit": "140edfcf25093e8b321d13e154cbce89ee868ca0" },
+  "kanagawa.nvim": { "branch": "master", "commit": "ab41956c4559c3eb21e713fcdf54cda1cb6d5f40" },
+  "lazy.nvim": { "branch": "main", "commit": "aedcd79811d491b60d0a6577a9c1701063c2a609" },
+  "lualine.nvim": { "branch": "master", "commit": "7d131a8d3ba5016229e8a1d08bf8782acea98852" },
+  "mason-lspconfig.nvim": { "branch": "main", "commit": "60f6805b12a12e8a912aeb2f975dec1794a8994e" },
+  "mason.nvim": { "branch": "main", "commit": "c43eeb5614a09dc17c03a7fb49de2e05de203924" },
+  "neovim": { "branch": "main", "commit": "f977eeba34b030b37f93ece2fbd792477606203b" },
+  "nvim": { "branch": "main", "commit": "9703f227bfab20d04bcee62d2f08f1795723b4ae" },
+  "nvim-lspconfig": { "branch": "master", "commit": "aa199c5bbdbb7fd28b56212a89206f13db02799e" },
+  "nvim-treesitter": { "branch": "master", "commit": "ca46eb3ac96cd96e963895004589f0c9b2a44491" },
+  "nvim-web-devicons": { "branch": "master", "commit": "14ac5887110b06b89a96881d534230dac3ed134d" },
   "vim-commentary": { "branch": "master", "commit": "f67e3e67ea516755005e6cccb178bc8439c6d402" },
-  "visual_studio_code": { "branch": "master", "commit": "c42728711fb669b7ad1e4c467a328879d9a6f8c0" }
+  "visual_studio_code": { "branch": "master", "commit": "d185c6d75e577aedda9bb9dcc8b8b4b410b540dd" }
 }

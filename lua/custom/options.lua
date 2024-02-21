@@ -1,4 +1,4 @@
--- [[ options.lua ]]
+-- [[ custom.options.lua ]]
 
 local g = vim.g
 local opt = vim.opt
