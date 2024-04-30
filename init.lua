@@ -1,9 +1,9 @@
---[[ init.lua ]]
+--[[ lua/init.lua ]]
 
-require("custom")
+require "core"
 
-local colorscheme = "catppuccin-mocha"
+local colorscheme = "kanagawa"
 
-if not pcall(vim.cmd, "colorscheme " .. colorscheme) then
+if not pcall(function () vim.cmd("colorscheme " .. colorscheme) end) then
     vim.notify("colorscheme " .. colorscheme .. " not found!")
 end
