@@ -2,12 +2,12 @@
 
 local noremap = vim.keymap.set
 
--- Leader+ce swaps caps lock and escape keys
-noremap("n", "<leader>ce", ":!~/projects/local/bash/capsescape<CR><CR>")
+-- Leader+n opens the Netrw tree
+noremap("n", "<leader>n", ":enew<CR>:Ntree<CR>")
 -- Leader+t opens a terminal in new tab
 noremap("n", "<leader>t", ":term<CR>i")
 -- Escape exits terminal mode
-noremap("t", "<ESC>", "<C-\\><C-n>")
+-- noremap("t", "<ESC>", "<C-\\><C-n>")
 -- center cursor onscreen for C-u/C-d
 noremap("n", "<C-u>", "<C-u>zz")
 noremap("n", "<C-d>", "<C-d>zz")
