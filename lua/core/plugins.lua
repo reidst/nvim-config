@@ -34,4 +34,5 @@ require("lazy").setup {
     { "rebelot/kanagawa.nvim", lazy = true },
     { "catppuccin/nvim", lazy = true },
     { "rose-pine/neovim", lazy = true },
+    { "wuelnerdotexe/vim-enfocado", lazy = true },
 }
