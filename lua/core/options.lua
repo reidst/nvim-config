@@ -9,7 +9,7 @@ g.localleader = "\\"
 -- Context
 -- opt.cursorline = true
 opt.number = true
-opt.relativenumber = true
+-- opt.relativenumber = true
 opt.numberwidth = 4
 opt.scrolloff = 4
 opt.laststatus = 3
@@ -31,7 +31,7 @@ opt.incsearch = true
 
 -- Whitespace
 opt.expandtab = true
-opt.shiftwidth = 2
-opt.softtabstop = 2
-opt.tabstop = 2
+opt.shiftwidth = 4
+opt.softtabstop = 4
+opt.tabstop = 4
 opt.smartindent = true

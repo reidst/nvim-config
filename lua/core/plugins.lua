@@ -22,17 +22,19 @@ require("lazy").setup {
     "neovim/nvim-lspconfig",
     -- Languages
     "hasufell/ghcup.vim",
+    -- "neovimhaskell/haskell-vim",
     "rbgrouleff/bclose.vim",
+    "lervag/vimtex",
     -- Shortcuts
     "tpope/vim-commentary",
     -- Statusline
     "nvim-lualine/lualine.nvim",
     -- Themes
     "nvim-tree/nvim-web-devicons",
-    { "askfiy/visual_studio_code", lazy = true },
     { "morhetz/gruvbox", lazy = true },
     { "rebelot/kanagawa.nvim", lazy = true },
     { "catppuccin/nvim", lazy = true },
     { "rose-pine/neovim", lazy = true },
     { "wuelnerdotexe/vim-enfocado", lazy = true },
+    { "vague2k/vague.nvim", lazy = true },
 }

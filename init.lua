@@ -2,7 +2,7 @@
 
 require "core"
 
-local colorscheme = "enfocado"
+local colorscheme = "vague"
 local transparent = true
 
 if not pcall(function () vim.cmd("colorscheme " .. colorscheme) end) then

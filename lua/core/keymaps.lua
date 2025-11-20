@@ -3,8 +3,8 @@
 local noremap = vim.keymap.set
 
 -- Workflow --
--- Leader+n opens the Netrw tree
-noremap("n", "<leader>n", ":enew<CR>:Ntree<CR>")
+-- Leader+e opens the Netrw tree
+noremap("n", "<leader>e", ":enew<CR>:Ntree<CR>")
 -- Leader+t opens a terminal in new tab
 noremap("n", "<leader>t", ":term<CR>i")
 
@@ -43,9 +43,20 @@ noremap("n", "<A-k>", ":m-2<CR>")
 noremap({"n", "v"}, "<A-h>", "xhP")
 noremap({"n", "v"}, "<A-l>", "xlP")
 -- Ctrl-n operates on selected lines
-noremap("v", "<C-n>", ":norm ") -- https://stackoverflow.com/a/23063140
+noremap("v", "<C-n>", ":norm ")
 
 -- LSP shortcuts --
 -- gd uses LSP's goto-definition
 noremap("n", "gd", "<C-w>]<C-w>j<C-w>q")
-noremap("i", "<C-a>", "<C-x><C-o>")
+-- Shift-Tab does autocomplete
+noremap("i", "<S-Tab>", "<C-x><C-o>")
+-- Leader+dt toggles diagnostics
+noremap("n", "<leader>dt", function() vim.diagnostic.enable(not vim.diagnostic.is_enabled()) end)
+-- Leader+dd shows the diagnostic pop-up
+noremap("n", "<leader>dd", vim.diagnostic.open_float)
+-- Leader+dn goes to the next diagnostic
+noremap("n", "<leader>dn", vim.diagnostic.goto_next)
+-- Leader+dp goes to the previous diagnostic
+noremap("n", "<leader>dp", vim.diagnostic.goto_prev)
+-- Leader+da opens the code action menu
+noremap("n", "<leader>da", vim.lsp.buf.code_action)

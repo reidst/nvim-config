@@ -1,6 +1,7 @@
 --[[ after/plugin/init.lua ]]
 
-require "lualine"
+require "lspconfig" -- also configures mason and mason-lspconfig
 require "nvim-treesitter"
-require "lspconfig" -- also configures mason an mason-lspconfig
+-- require "haskell-vim"
+require "lualine"
 require "kanagawa"
