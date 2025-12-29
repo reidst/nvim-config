@@ -1,4 +1,4 @@
---[[ after/plugin/lspconfig.lua ]]
+--[[ after/plugin.lspconfig ]]
 
 require("mason").setup()
 

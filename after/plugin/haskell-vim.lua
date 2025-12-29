@@ -1,8 +1,8 @@
---[[ after/plugin/haskell-vim.lua ]]
+--[[ after/plugin.haskell-vim ]]
 
 local g = vim.g
 
-vim.cmd[[
+vim.cmd [[
 syntax on
 filetype plugin indent on
 ]]

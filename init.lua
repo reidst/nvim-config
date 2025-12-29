@@ -1,4 +1,4 @@
---[[ lua/init.lua ]]
+--[[ Neovim config entrypoint ]]
 
 require "core"
 
@@ -10,6 +10,6 @@ if not pcall(function () vim.cmd("colorscheme " .. colorscheme) end) then
 end
 
 if transparent then
-  vim.cmd "hi Normal guibg=None"
-  vim.cmd "hi NormalNC guibg=None"
+    vim.cmd "hi Normal guibg=None"
+    vim.cmd "hi NormalNC guibg=None"
 end

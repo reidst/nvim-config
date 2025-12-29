@@ -1,5 +1,6 @@
---[[ lua/core.init.lua ]]
+--[[ lua/core.init ]]
 
-require("core.options")
-require("core.keymaps")
-require("core.plugins")
+require "core.vimrc"
+require "core.options"
+require "core.keymaps"
+require "core.plugins"

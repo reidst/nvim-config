@@ -1,4 +1,4 @@
---[[ after/plugin/nvim-treesitter.lua ]]
+--[[ after/plugin.nvim-treesitter ]]
 
 require("nvim-treesitter.configs").setup {
     ensure_installed = {

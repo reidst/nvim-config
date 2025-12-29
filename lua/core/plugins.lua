@@ -1,4 +1,4 @@
--- [[ lua/core.plugins.lua ]]
+--[[ lua/core.plugins ]]
 
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
