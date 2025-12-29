@@ -19,6 +19,14 @@ end
 
 local hide_tabline = function() show_tabline(false) end
 
+local function is_help_buffer(bufnr)
+    local run_str = string.format(
+        "getbufvar(%d, '&buftype') ==# 'help'",
+        bufnr
+    )
+    return vim.api.nvim_eval(run_str) == 1
+end
+
 require("lualine").setup {
     globalstatus = true,
     options = {
@@ -68,7 +76,10 @@ vim.api.nvim_create_autocmd({ "BufAdd" }, {
 })
 vim.api.nvim_create_autocmd({ "BufDelete" }, {
     pattern = { "*" },
-    callback = function()
+    callback = function(ev)
+        if is_help_buffer(ev.buf) then
+            return
+        end
         if buffer_count() <= 2 then
             hide_tabline()
             require("lualine").setup {
