@@ -1,30 +1,50 @@
 --[[ after/plugin.lualine ]]
 
 local function buffer_count()
-    return vim.api.nvim_eval("len(getbufinfo({'buflisted':1}))")
+    return #vim.fn.getbufinfo({buflisted = 1})
 end
 
 local function tab_count()
-    return vim.api.nvim_eval("len(gettabinfo())")
+    return #vim.fn.gettabinfo()
 end
 
-local function tabs()
-    local current_tab = tostring(vim.api.nvim_eval "tabpagenr()")
-    return "Tab " .. current_tab .. "/" .. tostring(tab_count())
+local function tab_display()
+    return "Tab " .. tostring(vim.fn.tabpagenr())
+        .. "/" .. tostring(tab_count())
 end
 
-local function show_tabline(state)
-    require("lualine").setup {options = {always_show_tabline = state ~= false}}
+local function should_show_buffer_info()
+    return buffer_count() > 1
 end
 
-local hide_tabline = function() show_tabline(false) end
+local function should_show_tab_info()
+    return tab_count() > 1
+end
 
-local function is_help_buffer(bufnr)
-    local run_str = string.format(
-        "getbufvar(%d, '&buftype') ==# 'help'",
-        bufnr
-    )
-    return vim.api.nvim_eval(run_str) == 1
+local function set_show_tabline(state)
+    require("lualine").setup {options = {always_show_tabline = state}}
+end
+
+local function set_buffer_info(state)
+    require("lualine").setup {
+        tabline = {
+            lualine_c = state and { "buffers" } or {},
+        },
+    }
+    if state then set_show_tabline(true) end
+end
+
+local function set_tab_info(state)
+    require("lualine").setup {
+        tabline = {
+            lualine_a = state and { tab_display } or {},
+        },
+    }
+    if state then set_show_tabline(true) end
+end
+
+local function is_help_file(filename)
+    return string.match(filename, "^/tmp/.+vim/runtime/doc/.+%.txt") ~= nil
 end
 
 require("lualine").setup {
@@ -36,9 +56,11 @@ require("lualine").setup {
             events = {
                 "BufAdd",
                 "BufDelete",
+                "TabEnter",
             },
         },
-        always_show_tabline = buffer_count() > 1,
+        always_show_tabline =
+            should_show_tab_info() or should_show_buffer_info(),
     },
     sections = {
         lualine_a = { "branch" },
@@ -61,34 +83,23 @@ require("lualine").setup {
 -- Only show buffers in the tabline if there are more than one
 vim.api.nvim_create_autocmd({ "BufAdd" }, {
     pattern = { "*" },
-    callback = function()
-        if buffer_count() > 1 then
-            show_tabline()
-            require("lualine").setup {
-                tabline = {lualine_c = { "buffers" }},
-            }
-        else
-            require("lualine").setup {
-                tabline = {lualine_c = {}},
-            }
+    callback = function(ev)
+        if is_help_file(ev.file) then
+            return
         end
+        set_buffer_info(true)
+        set_show_tabline(true)
     end,
 })
 vim.api.nvim_create_autocmd({ "BufDelete" }, {
     pattern = { "*" },
     callback = function(ev)
-        if is_help_buffer(ev.buf) then
+        if is_help_file(ev.file) then
             return
         end
         if buffer_count() <= 2 then
-            hide_tabline()
-            require("lualine").setup {
-                tabline = {lualine_c = {}},
-            }
-        else
-            require("lualine").setup {
-                tabline = {lualine_c = { "buffers" }},
-            }
+            set_buffer_info(should_show_tab_info())
+            set_show_tabline(should_show_tab_info())
         end
     end,
 })
@@ -97,30 +108,18 @@ vim.api.nvim_create_autocmd({ "BufDelete" }, {
 vim.api.nvim_create_autocmd({ "TabNew" }, {
     pattern = { "*" },
     callback = function()
-        if tab_count() > 1 then
-            show_tabline()
-            require("lualine").setup {
-                tabline = {lualine_a = { tabs }},
-            }
-        else
-            require("lualine").setup {
-                tabline = {lualine_a = {}},
-            }
-        end
+        set_tab_info(true)
+        set_buffer_info(true)
+        set_show_tabline(true)
     end,
 })
 vim.api.nvim_create_autocmd({ "TabClosed" }, {
     pattern = { "*" },
     callback = function()
         if tab_count() == 1 then
-            hide_tabline()
-            require("lualine").setup {
-                tabline = {lualine_a = {}},
-            }
-        else
-            require("lualine").setup {
-                tabline = {lualine_a = { tabs }},
-            }
+            set_tab_info(false)
+            set_buffer_info(should_show_buffer_info())
+            set_show_tabline(should_show_buffer_info())
         end
     end,
 })
