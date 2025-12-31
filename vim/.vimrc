@@ -51,5 +51,6 @@ nnoremap ]a :next<CR>
 nnoremap [A :first<CR>
 nnoremap ]A :last<CR>
 " text manipulation
-vnoremap <C-n> :norm<Space>
+vnoremap <Leader>n :norm<Space>
+nnoremap <Leader>n :norm<Space>
 
