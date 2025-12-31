@@ -80,9 +80,11 @@ require("lualine").setup {
     },
 }
 
--- Only show buffers in the tabline if there are more than one
+local group = vim.api.nvim_create_augroup("tabline_manager", { clear = true })
 vim.api.nvim_create_autocmd({ "BufAdd" }, {
+    desc = "Show all listed buffers on the tabline",
     pattern = { "*" },
+    group = group,
     callback = function(ev)
         if is_help_file(ev.file) then
             return
@@ -92,7 +94,9 @@ vim.api.nvim_create_autocmd({ "BufAdd" }, {
     end,
 })
 vim.api.nvim_create_autocmd({ "BufDelete" }, {
+    desc = "Remove the tabline if only one tab and buffer remain",
     pattern = { "*" },
+    group = group,
     callback = function(ev)
         if is_help_file(ev.file) then
             return
@@ -103,10 +107,10 @@ vim.api.nvim_create_autocmd({ "BufDelete" }, {
         end
     end,
 })
-
--- Only show tabs in the tabline if there are more than one
 vim.api.nvim_create_autocmd({ "TabNew" }, {
+    desc = "Show the current tab number on the tabline",
     pattern = { "*" },
+    group = group,
     callback = function()
         set_tab_info(true)
         set_buffer_info(true)
@@ -114,7 +118,9 @@ vim.api.nvim_create_autocmd({ "TabNew" }, {
     end,
 })
 vim.api.nvim_create_autocmd({ "TabClosed" }, {
+    desc = "Remove the tab number from the tabline if only one tab remains",
     pattern = { "*" },
+    group = group,
     callback = function()
         if tab_count() == 1 then
             set_tab_info(false)

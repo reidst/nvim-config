@@ -37,10 +37,7 @@ nnoremap <Leader>t :terminal<CR>i
 vnoremap / y/\V<C-r>"<CR>
 nnoremap <C-u> <C-u>zz
 nnoremap <C-d> <C-d>zz
-nnoremap <C-h> <C-w>h
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
+nnoremap <Leader>w <C-w>
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
